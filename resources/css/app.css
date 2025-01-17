@@ -1,0 +1,23 @@
+@import 'bootstrap/dist/css/bootstrap.min.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.login-container {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-size: cover; /* This ensures the image covers the container */
+    background-position: center; /* This centers the image */
+    background-size: 100% 100%;
+}
+.login-form {
+    background-color: rgba(255, 255, 255, 0.4);
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8); 
+    backdrop-filter: blur(5px); 
+    -webkit-backdrop-filter: blur(5px);
+}
