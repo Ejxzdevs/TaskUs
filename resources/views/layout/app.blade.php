@@ -7,15 +7,16 @@
          @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body>
-       <p>HELLO WORLD</p>
-       <a href="{{ route('home') }}">
-        home
-       </a> 
-       <a href="{{ route('about') }}">
-        about
-       </a>
-       <div>
-            @yield('pages')
-       </div>
+       <div class="main-container d-flex flex-row">
+            <div class="d-flex flex-col border-right border-1 h-100" style="background-color:#7D2650" >
+                @include('components.sidebar')
+            </div>
+            <div class="flex-1 flex-col"> 
+                @include('components.header')
+                <div style="background-color: #CD5A91" >
+                    @yield('pages')
+                </div>
+            </div>
+        </div>
     </body>
 </html>
