@@ -1,26 +1,26 @@
-<aside style="width: 230px; transition: width 0.3s ease;" id="sidebar">
-    <header class="h-16 border-bottom d-flex flex-row align-items-center ps-4">
-        <label>
-            LOGO
+<aside style="width: 230px; transition: width 0.3s ease; color: white;" id="sidebar">
+    <header class="d-flex justify-between align-items-center pe-4 h-16 border-bottom d-flex flex-row  ps-4">
+        <label class="path">
+            TaskUs
         </label>
         <a class="cursor-pointer" id="toggle-btn">
-            ->
+            <i class="fas fa-bars"></i>
         </a>
     </header>
     <ul class="d-flex flex-col ">
-        <li class="ps-4 h-10 flex items-center">
-            <a style="font-size: 14px" class="d-flex flex-row gap-2" href="{{ route('home') }}">
+        <li class="nav-item ps-4 h-10 flex items-center">
+            <a style="font-size: 14px" class=" d-flex flex-row justify-center align-items-center gap-2" href="{{ route('home') }}">
                 <i class="fas fa-home"></i>
                 <span class="path">
-                    About
+                    Home
                 </span>
             </a>
         </li>
         <li class="ps-4 h-10 flex items-center">
-            <a style="font-size: 14px" class="d-flex flex-row gap-2" href="{{ route('home') }}">
-                <i class="fas fa-home"></i>
+            <a style="font-size: 14px" class=" d-flex flex-row justify-center align-items-center gap-2" href="{{ route('tasks.index') }}">
+                <i class="nav-item fas fa-list-check"></i>
                 <span class="path">
-                    Contact
+                    Task
                 </span>
             </a>
         </li>
