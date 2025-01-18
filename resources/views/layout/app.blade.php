@@ -11,9 +11,11 @@
             <div class="d-flex flex-col border-right border-1 h-100" style="background-color:#7D2650" >
                 @include('components.sidebar')
             </div>
-            <div class="flex-1 flex-col"> 
-                @include('components.header')
-                <div style="background-color: #CD5A91" >
+            <div class="w-100" style="background-color: #CD5A91; height: 100vh;">
+                <div style="height: 11%" >
+                    @include('components.header')
+                </div>
+                <div style="height: 89%">
                     @yield('pages')
                 </div>
             </div>
