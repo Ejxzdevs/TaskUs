@@ -24,6 +24,14 @@
                 </span>
             </a>
         </li>
+        <li class="ps-4 h-10 flex items-center">
+            <a style="font-size: 14px" class=" d-flex flex-row justify-center align-items-center gap-2" href="{{ route('logout') }}">
+                <i class="nav-item fas fa-list-check"></i>
+                <span class="path">
+                    Logout
+                </span>
+            </a>
+        </li>
     </ul>
 </aside>
 
