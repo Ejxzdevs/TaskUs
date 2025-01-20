@@ -68,6 +68,12 @@ class TaskController extends Controller
         $task->task_description = $validated['task_description'];
         $task->task_priority_level = $validated['task_priority_level'];
         $task->task_status = $validated['task_status'];
+        if ($validated['task_status'] === 'In Progress') {
+            $task->task_started_at = now();
+        }
+        if ($validated['task_status'] === 'Completed') {
+            $task->task_ended_at = now();
+        }
     
         // Save the updated task
         $task->save();
