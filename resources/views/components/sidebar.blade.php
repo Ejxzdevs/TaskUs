@@ -4,7 +4,7 @@
             TaskUs
         </label>
         <a class="cursor-pointer" id="toggle-btn">
-            <i class="fas fa-bars"></i>
+            <i class="fas fa-bars"></i> 
         </a>
     </header>
     <ul class="d-flex flex-col ">
