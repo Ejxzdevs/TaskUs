@@ -1,6 +1,6 @@
 <aside style="width: 230px; transition: width 0.3s ease; color: white;" id="sidebar">
     <header class="d-flex justify-between align-items-center pe-4 h-16 border-bottom d-flex flex-row  ps-4">
-        <label class="path">
+        <label class="path text-white " style="font-family: 'Rubik Vinyl'; font-size: 22px; ">
             TaskUs
         </label>
         <a class="cursor-pointer" id="toggle-btn">
@@ -26,7 +26,7 @@
         </li>
         <li class="ps-4 h-10 flex items-center">
             <a style="font-size: 14px" class=" d-flex flex-row justify-center align-items-center gap-2" href="{{ route('logout') }}">
-                <i class="nav-item fas fa-list-check"></i>
+                <i class="fas fa-sign-out-alt"></i>
                 <span class="path">
                     Logout
                 </span>
