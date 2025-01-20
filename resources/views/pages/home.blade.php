@@ -5,7 +5,7 @@
           use App\Services\UsersApi;
             $userEmail = Session::get('user_email');
             $userId = Session::get('user_id');
-            $userStatus = Session::get('user_status');
+            $userStatus = Session::get('user_role');
             $users = UsersApi::show();
         @endphp
           <p>User Email: {{$userEmail}}</p>
