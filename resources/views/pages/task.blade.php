@@ -1,5 +1,10 @@
 @extends('layout.app')
-
+    @php
+        use App\Services\UsersApi;
+        $users = UsersApi::show();
+        $userRole = Session::get('user_role');
+        $userId = Session::get('user_id');
+    @endphp
 @section('pages')
     <div x-data="{ open: false }" class="d-flex flex-col" style="height: 100%" >
         <div class="w-100 flex justify-end items-center pe-3" style="height: 15%">
@@ -17,7 +22,7 @@
                             <li class="list-group-item d-flex justify-between px-2 shadow-md rounded border-1 border-secondary-subtle">
                                 <p class="Smooch">{{ $task->task_name }}</p>
                                 <div class="d-flex flex-row gap-2">
-                                    <button onclick="editTask({{ json_encode($task) }})">
+                                    <button onclick="editTask({{ json_encode($task) }},{{ json_encode( $userId)}},{{ json_encode( $userRole)}})">
                                         <i class="fas fa-pen fs-6"></i>
                                     </button>
                                     <button onclick="openTask({{ json_encode($task) }});">
@@ -93,11 +98,6 @@
         </div>
 
         {{-- AssignTask --}}
-        @php
-        use App\Services\UsersApi;
-        $users = UsersApi::show();
-        $userRole = Session::get('user_role');
-        @endphp
         <div id="Assign" class="justify-center items-center translate-x-1" style="transition: opacity 0.5s ease; display: none; position: absolute; bottom: 0; left: 0; right: 0; top: 0; background-color: rgba(0, 0, 0, 0.5);">
             <div class="bg-white py-2 px-3 rounded-lg shadow-lg relative mb-2 w-72">
                 <button onclick="closeTask();" class="absolute top-2 right-3 text-gray-500 hover:text-gray-700">
@@ -186,7 +186,9 @@
                     </div>
                     <div class="mb-2">
                         <label for="edit_task_status" class="block font-medium text-gray-700">Status</label>
-                        <select id="edit_task_status" name="task_status" class="w-full border rounded p-1">
+                        <select id="edit_task_status" name="task_status" class="w-full border rounded p-1"
+                      
+                        >
                             <option value="Todo">Todo</option>
                             <option value="In Progress">In Progress</option>
                             <option value="Completed">Completed</option>
@@ -224,13 +226,26 @@
 
         const closeTask = () => document.getElementById('Assign').style.display = 'none';
 
-        const editTask = (data) => {
+        const editTask = (data,user_logged_id,user_logged_role) => {
+            console.log('user id logged ' + user_logged_id)
+            console.log('user role logged ' + user_logged_role)
+            console.log('user id assigned ' + data.user_id)
+            const status = document.getElementById('edit_task_status')
             document.getElementById('editTask').style.display = 'flex';
             document.getElementById('edit_task_name').value = data.task_name;
             document.getElementById('edit_task_priority_level').value = data.task_priority_level;
             document.getElementById('edit_task_description').textContent = data.task_description;
-            document.getElementById('edit_task_status').value = data.task_status;
             document.getElementById('edit_assign_user').value = data.id || 'Not Assigned Yet';
+            status.value = data.task_status;
+
+            if(user_logged_role === 'user'){
+                if (user_logged_id === data.user_id) {
+                    status.style.pointerEvents = 'auto'; 
+                } else {
+                    status.style.pointerEvents = 'none'; 
+                }
+            }
+            
             // Update the delete form action dynamically
             const updateForm = document.getElementById('update-form');
             updateForm.action = `/tasks/${data.t_id}`;
