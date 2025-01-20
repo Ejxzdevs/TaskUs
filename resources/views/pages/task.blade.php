@@ -18,7 +18,7 @@
                 <h1 class="py-3 font-bold ms-2">Todo</h1>
                 <ul class="list-group list-group-flush px-2 flex flex-col gap-2 pt-2 overflow-y-auto py-2">
                     @foreach($tasks as $task)
-                        @if($task->task_status === 'Todo' )
+                        @if($task->task_status === 'Todo')
                             <li class="list-group-item d-flex flex-col gap-1 justify-between px-2 shadow-md rounded border-1 border-secondary-subtle">
                                 <div class="d-flex flex-row gap-1" >
                                     @php
