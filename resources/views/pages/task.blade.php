@@ -58,6 +58,7 @@
         </div>
     </div>
 
+   
     {{-- MODAL ADD TASK --}}
     <div @toggle-open.window="open = !open" x-data="{ open: false }">
         <div x-show="open" x-transition @click.away="open = false" class="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50">
@@ -95,6 +96,7 @@
         @php
         use App\Services\UsersApi;
         $users = UsersApi::show();
+        $userRole = Session::get('user_role');
         @endphp
         <div id="Assign" class="justify-center items-center translate-x-1" style="transition: opacity 0.5s ease; display: none; position: absolute; bottom: 0; left: 0; right: 0; top: 0; background-color: rgba(0, 0, 0, 0.5);">
             <div class="bg-white py-2 px-3 rounded-lg shadow-lg relative mb-2 w-72">
@@ -118,8 +120,9 @@
                     </div>
                     <div class="mb-3">
                         <label for="assign_user" class="block font-medium text-gray-700">Assign to</label>
-                        <select id="assign_user" name="user_id" class="mt-1 py-1 w-full border rounded">
-                            <option disabled selected>Choose User</option>
+                        <select id="assign_user" name="user_id" class="mt-1 py-1 w-full border rounded" 
+                        style="pointer-events: @php echo $userRole === 'user' ? 'none' : 'auto'; @endphp;" >
+                            <option readonly selected>Choose User</option>
                             @foreach ($users as $user)
                                 <option value="{{ $user->id }}">{{ $user->email }}</option>
                             @endforeach
@@ -127,7 +130,9 @@
                     </div>
                     <input id="task_id" name="task_id" type="text" hidden>
                     <div class="flex justify-end">
-                        <button type="submit" class="btn btn-primary px-3 d-flex items-center justify-center" style="font-size: 12px; height: 25px;">
+                        <button type="submit" class="btn btn-primary px-3 d-flex items-center justify-center" style="font-size: 12px; height: 25px;"
+                        @php echo $userRole === 'user' ? 'disabled' : ''; @endphp
+                        >
                             Submit
                         </button>
                     </div>
@@ -147,15 +152,23 @@
                     @method('PUT')
                     <div class="mb-2">
                         <label for="edit_task_name" class="block font-medium text-gray-700">Task Name</label>
-                        <input id="edit_task_name" name="task_name" class="w-full border rounded p-1" style="font-size: 12px">
+                        <input id="edit_task_name" name="task_name" class="w-full border rounded p-1" 
+                        style="font-size: 12px; pointer-events: @php echo $userRole === 'user' ? 'none' : 'auto'; @endphp;"
+                        >
                     </div>
                     <div class="mb-2">
                         <label for="edit_task_description" class="block font-medium text-gray-700">Task Description</label>
-                        <textarea id="edit_task_description" name="task_description" rows="5" class="w-full border rounded p-1" style="font-size: 12px"></textarea>
+                        <textarea id="edit_task_description" name="task_description" rows="5" class="w-full border rounded p-1" 
+                        style="font-size: 12px; 
+                        pointer-events: @php echo $userRole === 'user' ? 'none' : 'auto'; @endphp;
+                        " >
+                        </textarea>
                     </div>
                     <div class="mb-2">
                         <label for="edit_task_priority_level" class="block font-medium text-gray-700">Priority Level</label>
-                        <select id="edit_task_priority_level" name="task_priority_level" class="w-full border rounded p-1">
+                        <select id="edit_task_priority_level" name="task_priority_level" class="w-full border rounded p-1"
+                        style="pointer-events: @php echo $userRole === 'user' ? 'none' : 'auto'; @endphp;"
+                        >
                             <option value="Low Priority">Low Priority</option>
                             <option value="Medium Priority">Medium Priority</option>
                             <option value="High Priority">High Priority</option>
@@ -163,7 +176,8 @@
                     </div>
                     <div class="mb-2">
                         <label for="edit_assign_user" class="block font-medium text-gray-700">Assign to</label>
-                        <select id="edit_assign_user" name="user_id" class="w-full border rounded p-1">
+                        <select id="edit_assign_user" name="user_id" class="w-full border rounded p-1" 
+                        style="pointer-events: @php echo $userRole === 'user' ? 'none' : 'auto'; @endphp;" >
                             <option value="Not Assigned Yet">Not Assigned Yet</option>
                             @foreach ($users as $user)
                                 <option value="{{ $user->id }}">{{ $user->email }}</option>
@@ -186,7 +200,11 @@
                     <form id="delete-form" action="" method="POST" style="display: inline;">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn btn-danger px-3 d-flex items-center justify-center" style="font-size: 12px; height: 25px;">Delete</button>
+                        <button type="submit" class="btn btn-danger px-3 d-flex items-center justify-center" style="font-size: 12px; height: 25px;"
+                        @php
+                        echo $userRole === 'user' ? 'disabled' : '';
+                        @endphp
+                        >Delete</button>
                     </form>
                 </div>
             </div>
