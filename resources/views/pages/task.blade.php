@@ -445,7 +445,7 @@
                     <p>${formattedTimeEnded}</p>
                 </div>
                 <div class="mb-2" style="font-size: 12px;">
-                    <label for="view_task_status" class="block font-medium text-gray-700">Time Spent</label>
+                    <label for="view_task_status" class="block font-medium text-gray-700">Time Spent"</label>
                     <p>${hours} hours & ${minutes} minutes</p>
                 </div>
             </div>
