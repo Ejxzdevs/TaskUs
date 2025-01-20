@@ -83,7 +83,7 @@ class UserController extends Controller
 
         Session::put('user_email', Auth::user()->email);
         Session::put('user_id', Auth::id());
-        Session::put('user_status', Auth::user()->role);
+        Session::put('user_role', Auth::user()->role);
 
         return redirect()->route('home')->with('success', 'Logged in successfully!');
     } else {
