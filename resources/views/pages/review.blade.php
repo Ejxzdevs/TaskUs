@@ -10,7 +10,7 @@
 
 @section('pages')
     <div class="container px-4">
-        <h2 class="py-4 text-white font-bold fs-4" >Completed Tasks</h2>
+        <h2 class="py-4 text-white font-bold fs-4" >Task Review</h2>
         <table class="table table-striped rounded-3" style="background-color: #F1F2F4; font-size: 12px;">
             <thead>
                 <tr>
@@ -47,18 +47,48 @@
                             <form action="{{ route('tasks.update', $review->task_id ) }}" method="POST">
                                 @csrf
                                 @method('PUT')
-                                {{-- <input type="text" name="user_id" value="{{ $review->user_id }}" > --}}
-                                {{-- <input type="text" name="user_id" value="{{ $review->task_id }}" > --}}
-                                <input type="text" name="task_status" value="Approved" >
+                                <input type="text" name="task_status" value="Approved" hidden>
                                 <button type="submit" class="btn btn-success d-flex items-center justify-center" style="height: 30px; font-size: 12px;" >Approved</button>
                             </form>
-                            <form action="">
-                                <button class="btn btn-warning d-flex items-center justify-center text-white" style="height: 30px; font-size: 12px;" >Revise</button>
-                            </form>
+                            <a onclick="openRevise( {{ json_encode($review) }});" class="btn btn-warning d-flex items-center justify-center text-white" style="height: 30px; font-size: 12px;" >Revise</a>
                         </td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
+        <div id="revise" class="justify-center items-center translate-x-1" style="transition: opacity 0.5s ease; display: none; position: absolute; bottom: 0; left: 0; right: 0; top: 0; background-color: rgba(0, 0, 0, 0.5);">
+            <div id="containerViewTask" class="bg-white py-2 px-3 rounded-lg shadow-lg relative mb-2 w-72">
+                <button onclick="closeRevise();" class="absolute top-3 right-3 text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-times"></i>
+                </button>
+                <p id="title" class="text-center fw-bold py-2" style="font-size: 12px" ></p>
+                <form action="" method="POST" id="update-form" style="font-size: 12px">
+                    @csrf
+                    @method('PUT')
+                    <div class="mb-3">
+                        <label for="view_task_name" class="form-label">Revise Description</label>
+                        <textarea name="task_description" rows="5" class="form-control w-100 border border-secondary"></textarea>
+                        <input type="text" name="task_status" value="Revise" hidden>
+                    </div>
+                    <div class="mb-2 d-flex justify-center items-center">
+                        <button type="submit" style="height: 30px; width: 150px; font-size: 12px" class="d-flex justify-center items-center btn btn-primary text-white ">Submit</button>
+                    </div>
+                </form>
+                </div>
+            </div>
+        </div>
+        <script>
+            const openRevise = (data) => {
+                document.getElementById('revise').style.display = 'flex';
+                document.getElementById('title').textContent = data.task_name;
+
+                const updateForm = document.getElementById('update-form');
+                updateForm.action = `/tasks/${data.task_id}`;
+                console.log(data);
+                
+            }
+
+            const closeRevise = () => document.getElementById('revise').style.display = 'none';
+        </script>
     </div>
 @endsection
