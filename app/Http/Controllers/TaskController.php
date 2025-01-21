@@ -51,35 +51,52 @@ class TaskController extends Controller
     {
         DB::table('assigns')
         ->where('task_id', $id)
-        ->update(['user_id' => $request->user_id]);
+        ->update([
+            'user_id' => $request->has('user_id') && $request->user_id ? $request->user_id : DB::raw('user_id')
+        ]);
 
         $validated = $request->validate([
-            'task_name' => 'required|string|max:255',
+            'task_name' => 'nullable|string|max:255',
             'task_description' => 'nullable|string',
-            'task_priority_level' => 'required|string|in:Low Priority,Medium Priority,High Priority',
-            'task_status' => 'required|string|in:Todo,In Progress,Completed',
+            'task_priority_level' => 'nullable|string|in:Low Priority,Medium Priority,High Priority',
+            'task_status' => 'nullable|string|in:Todo,In Progress,Completed,Approved',
         ]);
     
-        // Find the task by ID (if it exists)
         $task = Task::findOrFail($id);
     
-        // Update the task with the validated data
-        $task->task_name = $validated['task_name'];
-        $task->task_description = $validated['task_description'];
-        $task->task_priority_level = $validated['task_priority_level'];
-        $task->task_status = $validated['task_status'];
-        if ($validated['task_status'] === 'In Progress') {
-            $task->task_started_at = now();
+        // Update fields only if a new value is passed, otherwise retain the existing value
+        if($request->has('task_name')) {
+            $task->task_name = $validated['task_name'];
         }
-        if ($validated['task_status'] === 'Completed') {
-            $task->task_ended_at = now();
+        
+        if($request->has('task_description')) {
+            $task->task_description = $validated['task_description'];
+        }
+        
+        if ($request->has('task_priority_level')) {
+            $task->task_priority_level = $validated['task_priority_level'];
+        }
+        
+        if ($request->has('task_status')) {
+            $task->task_status = $validated['task_status'];
+            
+            if ($validated['task_status'] === 'In Progress' && !$task->task_started_at) {
+                $task->task_started_at = now();
+            }
+    
+            if ($validated['task_status'] === 'Completed' && !$task->task_ended_at) {
+                $task->task_ended_at = now();
+            }
         }
     
         // Save the updated task
         $task->save();
-    
-        // Redirect back to the tasks list or some other route
+        
+        if($task->task_status === 'Approved'){
+            return redirect()->route('review')->with('success', 'Task updated successfully.');
+        }else{
         return redirect()->route('tasks.index')->with('success', 'Task updated successfully.');
+        }
     }
     public function destroy(string $id)
     {
