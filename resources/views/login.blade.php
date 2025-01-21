@@ -13,15 +13,18 @@
               <form action="{{ route('loginAccount') }}" method="POST">
                 @csrf
                 <div class="mb-3">
-                  <label for="username" class="form-label">Username</label>
+                  <label for="username" class="form-label text-gray-700">Username</label>
                   <input type="text" name="email" class="form-control" id="username" placeholder="Enter your username">
                 </div>
                 <div class="mb-3">
-                  <label for="password" class="form-label">Password</label>
+                  <label for="password" class="form-label text-gray-700">Password</label>
                   <input type="password" name="password" class="form-control" id="password" placeholder="Enter your password">
                 </div>
                 <div class="d-grid">
                   <button type="submit" class="btn btn-primary">Login</button>
+                </div>
+                <div class="my-1">
+                  <a class="text-gray-700 text-decoration-underline" href="{{ route('register')}}">Register account?</a>
                 </div>
               </form>
             </div>

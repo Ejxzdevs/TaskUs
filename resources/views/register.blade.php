@@ -12,9 +12,9 @@
 
                 if (password !== rePassword) {
                     alert("Passwords do not match!");
-                    return false; // Prevent form submission
+                    return false;
                 }
-                return true; // Allow form submission
+                return true;
             }
         </script>
     </head>
@@ -25,19 +25,22 @@
                 <form onsubmit="return validateForm()" action="{{ route('users.store') }}" method="POST">
                 @csrf
                 <div class="mb-3">
-                  <label for="Email" class="form-label">Email</label>
+                  <label for="Email" class="form-label text-gray-700">Email</label>
                   <input type="text" class="form-control" name="email" placeholder="Enter Email" required>
                 </div>
                 <div class="mb-3">
-                  <label for="password" class="form-label">Password</label>
+                  <label for="password" class="form-label text-gray-700">Password</label>
                   <input type="password" class="form-control" name="password" id="password" placeholder="Enter Password" required>
                 </div>
                 <div class="mb-3">
-                    <label for="re_password" class="form-label">Re Password</label>
+                    <label for="re_password" class="form-label text-gray-700">Re Password</label>
                     <input type="password" class="form-control" id="re_password" placeholder="Re-Enter Password" required>
                 </div>
                 <div class="d-grid">
                   <button type="submit" class="btn btn-primary">Register</button>
+                </div>
+                <div class="my-1">
+                  <a class="text-gray-700 text-decoration-underline" href="{{ route('login')}}">Login Account?</a>
                 </div>
               </form>
             </div>
