@@ -251,8 +251,8 @@
                     <div class="mb-2">
                         <label for="edit_task_status" class="block font-medium text-gray-700">Status</label>
                         <select id="edit_task_status" name="task_status" class="w-full border rounded p-1"
-                      
                         >
+                          
                             <option value="Todo">Todo</option>
                             <option value="In Progress">In Progress</option>
                             <option value="Completed">Completed</option>
