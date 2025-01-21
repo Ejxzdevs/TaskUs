@@ -11,7 +11,7 @@
             <div class="d-flex flex-col border-right border-1 h-100" style="background-color:#7D2650" >
                 @include('components.sidebar')
             </div>
-            <div class="w-100" style="background-color: #CD5A91; height: 100vh;">
+            <div class="w-100" style="background-color: #C5CBE2; height: 100vh;">
                 <div style="height: 11%" >
                     @include('components.header')
                 </div>
