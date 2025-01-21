@@ -10,6 +10,8 @@ Route::get('/', function () {return view('login'); })->name('login');
 
 Route::get('/home', function () { return view('pages.home'); })->name('home');
 Route::get('/review', function () {return view('pages.review'); })->name('review');
+Route::get('/history', function () {return view('pages.history'); })->name('history');
+Route::get('/member', function () {return view('pages.member'); })->name('member');
 
 Route::get('/register', function () { return view('register'); })->name('register');
 Route::post('/login', [UserController::class, 'authenticate'])->name('loginAccount');
