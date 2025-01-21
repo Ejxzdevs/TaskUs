@@ -52,6 +52,7 @@
                     @endforeach
                 </ul>
             </div>
+
             <!-- In Progress Tasks -->
             <div class="card " style="width: 18rem; background-color: #F1F2F4;">
                 <h1 class="py-3 font-bold ms-2">In Progress</h1>
@@ -124,9 +125,6 @@
                     @endforeach
                 </ul>
             </div>
-
-
-
         </div>
     </div>
 
@@ -312,11 +310,7 @@
                 </div>
             </div>
         </div>
-
-
-
     </div>
-
     <script>
         const openTask = (data) => {
             console.log(data.t_id);
@@ -486,7 +480,6 @@
             container.innerHTML += addRow;
                 
             }
-
         };
 
         const closeViewTask = () => {
@@ -495,7 +488,6 @@
                 if (rowToRemove) {
                 rowToRemove.remove();
             }
-            
         }
     </script>
 @endsection
