@@ -1,19 +1,14 @@
 @extends('layout.app')
 @section('pages')
-    <div class="p-0 flex-grow-1 " >
-        @php
-          use App\Services\UsersApi;
-            $userEmail = Session::get('user_email');
-            $userId = Session::get('user_id');
-            $userStatus = Session::get('user_role');
-            $users = UsersApi::show();
-        @endphp
-          <p>User Email: {{$userEmail}}</p>
-          <p>User ID: {{$userId}}</p>
-          <p>User Status: {{$userStatus}}</p>
-          @foreach ($users as $user)
-            <p>{{ $user->email}}</p>
-          @endforeach
+    <div class="p-0 flex-grow h-100" >
+        <div class="flex flex-col h-100">
+            <div class="border w-100 d-flex justify-between items-center px-4" style="height: 90px" >
+                <p class="Smooch text-gray-800  font-bold fs-4" >Dashboard</p>
+            </div>
+            <div class="border" style="height: 400px">
+                <p>s</p>
+            </div>
+        </div>
         <script>
             @if(session('success'))
               alert("{{ session('success') }}");

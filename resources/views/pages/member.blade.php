@@ -9,7 +9,7 @@
 
 @section('pages')
     <div class="container px-4">
-        <h2 class="py-4 text-white font-bold fs-4" >Member List</h2>
+        <h2 class="py-4 text-gray-800 font-bold fs-4" >Member List</h2>
         <table class="table table-striped rounded-3 " style="background-color: #F1F2F4; font-size: 12px;">
             <thead>
                 <tr>
