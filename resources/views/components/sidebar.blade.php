@@ -26,23 +26,23 @@
         </li>
         <li class="ps-4 h-10 flex items-center">
             <a style="font-size: 14px" class=" d-flex flex-row justify-center align-items-center gap-2" href="{{ route('review') }}">
-                <i class="nav-item fas fa-list-check"></i>
+                <i class="fa fa-comments"></i>
                 <span class="path">
                     Review
                 </span>
             </a>
         </li>
         <li class="ps-4 h-10 flex items-center">
-            <a style="font-size: 14px" class=" d-flex flex-row justify-center align-items-center gap-2" href="{{ route('tasks.index') }}">
-                <i class="nav-item fas fa-list-check"></i>
+            <a style="font-size: 14px" class=" d-flex flex-row justify-center align-items-center gap-2" href="{{ route('history') }}">
+                <i class="fa fa-history"></i>
                 <span class="path">
                     History
                 </span>
             </a>
         </li>
         <li class="ps-4 h-10 flex items-center">
-            <a style="font-size: 14px" class=" d-flex flex-row justify-center align-items-center gap-2" href="{{ route('tasks.index') }}">
-                <i class="nav-item fas fa-list-check"></i>
+            <a style="font-size: 14px" class=" d-flex flex-row justify-center align-items-center gap-2" href="{{ route('member') }}">
+                <i class="fa fa-user"></i>
                 <span class="path">
                     Member
                 </span>
