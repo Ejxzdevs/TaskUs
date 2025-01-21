@@ -59,7 +59,7 @@ class TaskController extends Controller
             'task_name' => 'nullable|string|max:255',
             'task_description' => 'nullable|string',
             'task_priority_level' => 'nullable|string|in:Low Priority,Medium Priority,High Priority',
-            'task_status' => 'nullable|string|in:Todo,In Progress,Completed,Approved',
+            'task_status' => 'nullable|string|in:Todo,In Progress,Completed,Approved,Revise',
         ]);
     
         $task = Task::findOrFail($id);
@@ -92,7 +92,7 @@ class TaskController extends Controller
         // Save the updated task
         $task->save();
         
-        if($task->task_status === 'Approved'){
+        if($task->task_status === 'Approved' || $task->task_status === 'Revise'){
             return redirect()->route('review')->with('success', 'Task updated successfully.');
         }else{
         return redirect()->route('tasks.index')->with('success', 'Task updated successfully.');
