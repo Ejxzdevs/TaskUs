@@ -59,7 +59,15 @@ class UserController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+
+        $user = User::findOrFail($id);
+        if($user->user_status === 'Active'){
+            $user->user_status = 'Inactive';
+        }else{
+            $user->user_status = 'Active';
+        }
+        $user->save();
+        return view('pages.member')->with('success', 'User status updated successfully.');
     }
 
     /**
