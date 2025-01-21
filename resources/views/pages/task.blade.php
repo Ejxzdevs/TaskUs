@@ -485,13 +485,7 @@
             const container = document.getElementById('containerViewTask');
             container.innerHTML += addRow;
                 
-
-
             }
-
-
-
-
 
         };
 
@@ -499,7 +493,7 @@
             document.getElementById('viewTask').style.display = 'none';
             const rowToRemove = document.getElementById('addedRow');
                 if (rowToRemove) {
-                rowToRemove.remove();  // Remove the element from the DOM
+                rowToRemove.remove();
             }
             
         }
