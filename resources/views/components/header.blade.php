@@ -4,7 +4,6 @@
 
 <nav class="border-bottom  text-white d-flex flex-row justify-between items-center px-3 h-100 gap-1" style="background-color: #963061" >
    <div>
-      <p>Todo List</p>
       <p id="time" style='font-family: "Audiowide", serif;'></p>
    </div>
    <div class="d-flex flex-row gap-2 justify-center items-center" >
