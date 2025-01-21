@@ -78,13 +78,19 @@ class TaskController extends Controller
         }
         
         if ($request->has('task_status')) {
-            $task->task_status = $validated['task_status'];
+
+            if($validated['task_status'] === 'Revise'){
+                $task->task_status = 'Todo';
+            }else{
+                $task->task_status =  $request->task_status;
+            }
+         
             
-            if ($validated['task_status'] === 'In Progress' && !$task->task_started_at) {
+            if ($validated['task_status'] === 'In Progress') {
                 $task->task_started_at = now();
             }
     
-            if ($validated['task_status'] === 'Completed' && !$task->task_ended_at) {
+            if ($validated['task_status'] === 'Completed') {
                 $task->task_ended_at = now();
             }
         }
@@ -92,7 +98,7 @@ class TaskController extends Controller
         // Save the updated task
         $task->save();
         
-        if($task->task_status === 'Approved' || $task->task_status === 'Revise'){
+        if($validated['task_status'] === 'Approved' || $validated['task_status'] === 'Revise'){
             return redirect()->route('review')->with('success', 'Task updated successfully.');
         }else{
         return redirect()->route('tasks.index')->with('success', 'Task updated successfully.');
