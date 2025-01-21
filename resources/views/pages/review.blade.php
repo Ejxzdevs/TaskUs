@@ -11,7 +11,7 @@
 @section('pages')
     <div class="container px-4">
         <h2 class="py-4 text-white font-bold fs-4" >Task Review</h2>
-        <table class="table table-striped rounded-3" style="background-color: #F1F2F4; font-size: 12px;">
+        <table class="table table-striped rounded-3 text-center"  style="background-color: #F1F2F4; font-size: 12px;">
             <thead>
                 <tr>
                     <th scope="col">Task Name</th>
@@ -19,12 +19,13 @@
                     <th scope="col">Priority Level</th>
                     <th scope="col">Started - Ended</th>
                     <th scope="col">Time Spent</th>
-                    <th scope="col">Created at</th>
-                    <th scope="col" class="text-center" >Actions</th>
+                    <th scope="col">Date</th>
+                    <th scope="col" >Actions</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($reviews as $review)
+                    @if($review->task_status === 'Completed')
                     @php
                         $startTime = Carbon::parse($review->task_started_at);
                         $endTime = Carbon::parse($review->task_ended_at);
@@ -35,14 +36,15 @@
                         $formattedStartTime = $startTime->format('g:i A'); 
                         $formattedEndTime = $endTime->format('g:i A');
                         $formattedCreatedAt = Carbon::parse($review->created_at)->format('m/d/y');
+                        $formattedEndedAt = Carbon::parse($review->task_ended_at)->format('m/d/y');
                     @endphp
                     <tr>
-                        <td>{{ $review->task_id }}</td>
+                        <td>{{ $review->task_name }}</td>
                         <td>{{ $review->email }}</td>
-                        <td>{{ $review->user_id }}</td>
+                        <td>{{ $review->task_priority_level }}</td>
                         <td>{{ $formattedStartTime }} - {{ $formattedEndTime }}</td>
                         <td>{{ $timeSpent }}</td>
-                        <td>{{ $formattedCreatedAt }}</td>
+                        <td>{{ $formattedCreatedAt }} - {{ $formattedEndedAt }}</td>
                         <td class="d-flex flex-row gap-2" >
                             <form action="{{ route('tasks.update', $review->task_id ) }}" method="POST">
                                 @csrf
@@ -53,6 +55,7 @@
                             <a onclick="openRevise( {{ json_encode($review) }});" class="btn btn-warning d-flex items-center justify-center text-white" style="height: 30px; font-size: 12px;" >Revise</a>
                         </td>
                     </tr>
+                    @endif
                 @endforeach
             </tbody>
         </table>
