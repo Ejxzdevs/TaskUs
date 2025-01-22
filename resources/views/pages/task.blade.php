@@ -8,9 +8,11 @@
 @section('pages')
     <div x-data="{ open: false }" class="d-flex flex-col" style="height: 100%" >
         <div class="w-100 flex justify-end items-center pe-3" style="height: 15%">
+            @if($userRole === 'admin')
             <button type="button" class="btn btn-light border h-9 shadow-md d-flex flex-row gap-2 items-center" @click="$dispatch('toggle-open')">
                 <i class="fas fa-plus"></i><span>Add Task</span>
             </button>
+            @endif
         </div>
         <div class="d-flex justify-evenly py-3"  style="height: 85%">
             <!-- Todo Tasks -->
