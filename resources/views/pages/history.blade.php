@@ -11,8 +11,8 @@
         <table class="table table-striped rounded-3 text-center" style="background-color: #F1F2F4; font-size: 12px;">
             <thead>
                 <tr>
-                    <th scope="col">Task Name</th>
                     <th scope="col">Email</th>
+                    <th scope="col">Task Name</th>
                     <th scope="col">Priority Level</th>
                     <th scope="col">Started - Ended</th>
                     <th scope="col">Time Spent</th>
@@ -34,9 +34,9 @@
                         $formattedCreatedAt = Carbon::parse($review->created_at)->format('m/d/y');
                         $formattedEndedAt = Carbon::parse($review->task_ended_at)->format('m/d/y');
                     @endphp
-                    <tr>
-                        <td>{{ $review->task_name }}</td>
+                    <tr>                   
                         <td>{{ $review->email }}</td>
+                        <td>{{ $review->task_name }}</td>
                         <td>{{ $review->task_priority_level }}</td>
                         <td>{{ $formattedStartTime }} - {{ $formattedEndTime }}</td>
                         <td>{{ $timeSpent }}</td>
