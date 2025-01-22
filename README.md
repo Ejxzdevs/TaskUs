@@ -18,7 +18,7 @@
 - **Member Management**: Activate or deactivate user accounts.  
 
 ### User Features  
-- **Dashboard**: Displays an overview of assigned tasks and progress.  
+- **Dashboard**
 - **Task Management**:  
   - View assigned tasks and track their progress.  
   - Task priority indicators:  
