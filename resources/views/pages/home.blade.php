@@ -27,7 +27,6 @@
             <div class="w-100 d-flex justify-between items-center px-4" style="height: 150px" >
                 <p class="serif text-gray-800 font-bold fs-4" >Dashboard</p>
                 <div class="input-group" style="width: 300px">
-                    <!-- Search Icon and Input Field -->
                     <span class="input-group-text"><i class="fas fa-search"></i></span>
                     <input type="text" class="form-control" placeholder="Search:" aria-label="Search">
                   </div>
@@ -76,7 +75,7 @@
                 </div>
             </div>
     <div class="border px-4" style="width: 100%; height: auto;  " >
-        <p class="smooch py-3 text-gray-600 font-bold" >Recent Approved Tasks</p>
+        <p class="smooch py-3 text-gray-600 font-bold" >Recently Approved Tasks</p>
         <table class="table table-striped rounded-3 text-center" style="background-color: #F1F2F4; font-size: 12px;">
             <thead>
                 <tr>
@@ -161,7 +160,7 @@
               data: {
                 labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
                 datasets: [{
-                  label: months,
+                  label: 'Approved Tasks',
                   data: taskCounts,
                   borderWidth: 1,
                   borderColor: 'rgb(175, 122, 92)',
