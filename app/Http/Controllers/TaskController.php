@@ -12,7 +12,7 @@ class TaskController extends Controller
         $tasks = DB::table('tasks')
         ->leftJoin('assigns', 'assigns.task_id', '=', 'tasks.id')
         ->leftJoin('users', 'assigns.user_id', '=', 'users.id')
-        ->select('tasks.id as t_id', 'tasks.*', 'assigns.*', 'users.*')  // Select everything with tasks.id renamed
+        ->select('tasks.id as t_id', 'tasks.*', 'assigns.*', 'users.*')
         ->get();
         return view('pages.task', ['tasks' => $tasks ]);
     }
