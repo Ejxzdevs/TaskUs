@@ -3,6 +3,7 @@
 ## Overview 📌  
 **Task Us** is an easy-to-use task management system designed to help teams work together more effectively and stay organized. It simplifies the process of tracking tasks, ensuring that both managers and team members can easily see what's due and what's in progress. The system streamlines task management, enabling seamless collaboration and improved productivity.
 
+## Sample Website Design Highlight
 ![Logo](Overview.png)
 
 ## Features 📌
